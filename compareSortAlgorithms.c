@@ -11,12 +11,12 @@ void merge(int pData[], int l, int m, int r)
     int i, j, k;
     int n1 = m - l + 1;
     int n2 = r - m;
-
     int *left = (int *)malloc(n1 * sizeof(int));
     int *right = (int *)malloc(n2 * sizeof(int));
 
     for (i = 0; i < n1; i++)
         left[i] = pData[l + i];
+
     for (j = 0; j < n2; j++)
         right[j] = pData[m + 1 + j];
 
@@ -65,7 +65,6 @@ void mergeSort(int pData[], int l, int r)
 	if (l < r)
     {
         int m = l + (r - l) / 2;
-
         mergeSort(pData, l, m);
         mergeSort(pData, m + 1, r);
         merge(pData, l, m, r);
@@ -77,11 +76,11 @@ void mergeSort(int pData[], int l, int r)
 void insertionSort(int* pData, int n)
 {
 	int i, key, j;
+
     for (i = 1; i < n; i++)
     {
         key = pData[i];
         j = i - 1;
-
         while (j >= 0 && pData[j] > key)
         {
             pData[j + 1] = pData[j];
@@ -96,6 +95,7 @@ void insertionSort(int* pData, int n)
 void bubbleSort(int* pData, int n)
 {
 	int i, j, temp;
+
     for (i = 0; i < n - 1; i++)
     {
         for (j = 0; j < n - i - 1; j++)
@@ -115,6 +115,7 @@ void bubbleSort(int* pData, int n)
 void selectionSort(int* pData, int n)
 {
 	int i, j, min_idx;
+
     for (i = 0; i < n - 1; i++)
     {
         min_idx = i;
@@ -123,7 +124,6 @@ void selectionSort(int* pData, int n)
             if (pData[j] < pData[min_idx])
                 min_idx = j;
         }
-
         int temp = pData[min_idx];
         pData[min_idx] = pData[i];
         pData[i] = temp;
@@ -142,7 +142,6 @@ int parseData(char *inputFileName, int **ppData)
 		fscanf(inFile,"%d\n",&dataSz);
 		*ppData = (int *)malloc(sizeof(int) * dataSz);
 		// Implement parse data block
-
 		if (*ppData != NULL)
         {
             for (int i = 0; i < dataSz; i++)
@@ -157,7 +156,6 @@ int parseData(char *inputFileName, int **ppData)
     }
     
     fclose(inFile);
-	
 	return dataSz;
 }
 
@@ -170,12 +168,14 @@ void printArray(int pData[], int dataSz)
 	{
 		printf("%d ",pData[i]);
 	}
+
 	printf("\n\t");
 	
 	for (i=sz;i<dataSz;++i)
 	{
 		printf("%d ",pData[i]);
 	}
+
 	printf("\n\n");
 }
 
@@ -190,7 +190,6 @@ int main(void)
 	{
 		int *pDataSrc, *pDataCopy;
 		int dataSz = parseData(fileNames[i], &pDataSrc);
-		
 		if (dataSz <= 0)
 			continue;
 		
