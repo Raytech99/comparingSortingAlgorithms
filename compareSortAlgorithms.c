@@ -14,40 +14,38 @@ void merge(int pData[], int l, int m, int r)
     int *left = (int *)malloc(n1 * sizeof(int));
     int *right = (int *)malloc(n2 * sizeof(int));
 
-    for (i = 0; i < n1; i++)
+    for(i = 0; i < n1; i++){
         left[i] = pData[l + i];
+	}
 
-    for (j = 0; j < n2; j++)
+    for(j = 0; j < n2; j++){
         right[j] = pData[m + 1 + j];
+	}
 
     i = 0;
     j = 0;
     k = l;
 
-    while (i < n1 && j < n2)
+    while(i < n1 && j < n2)
     {
-        if (left[i] <= right[j])
-        {
+        if (left[i] <= right[j]){
             pData[k] = left[i];
             i++;
         }
-        else
-        {
+        else{
             pData[k] = right[j];
             j++;
         }
         k++;
     }
 
-    while (i < n1)
-    {
+    while(i < n1){
         pData[k] = left[i];
         i++;
         k++;
-    }
+	}
 
-    while (j < n2)
-    {
+    while(j < n2){
         pData[k] = right[j];
         j++;
         k++;
@@ -62,8 +60,7 @@ void merge(int pData[], int l, int m, int r)
 // extraMemoryAllocated counts bytes of extra memory allocated
 void mergeSort(int pData[], int l, int r)
 {
-	if (l < r)
-    {
+	if(l < r){
         int m = l + (r - l) / 2;
         mergeSort(pData, l, m);
         mergeSort(pData, m + 1, r);
@@ -77,11 +74,10 @@ void insertionSort(int* pData, int n)
 {
 	int i, key, j;
 
-    for (i = 1; i < n; i++)
-    {
+    for(i = 1; i < n; i++){
         key = pData[i];
         j = i - 1;
-        while (j >= 0 && pData[j] > key)
+        while(j >= 0 && pData[j] > key)
         {
             pData[j + 1] = pData[j];
             j = j - 1;
@@ -96,12 +92,9 @@ void bubbleSort(int* pData, int n)
 {
 	int i, j, temp;
 
-    for (i = 0; i < n - 1; i++)
-    {
-        for (j = 0; j < n - i - 1; j++)
-        {
-            if (pData[j] > pData[j + 1])
-            {
+    for (i = 0; i < n - 1; i++){
+        for(j = 0; j < n - i - 1; j++){
+            if(pData[j] > pData[j + 1]){
                 temp = pData[j];
                 pData[j] = pData[j + 1];
                 pData[j + 1] = temp;
@@ -116,13 +109,12 @@ void selectionSort(int* pData, int n)
 {
 	int i, j, min_idx;
 
-    for (i = 0; i < n - 1; i++)
-    {
+    for(i = 0; i < n - 1; i++){
         min_idx = i;
-        for (j = i + 1; j < n; j++)
-        {
-            if (pData[j] < pData[min_idx])
+        for(j = i + 1; j < n; j++){
+            if(pData[j] < pData[min_idx]){
                 min_idx = j;
+			}
         }
         int temp = pData[min_idx];
         pData[min_idx] = pData[i];
@@ -137,21 +129,17 @@ int parseData(char *inputFileName, int **ppData)
 	int dataSz = 0;
 	*ppData = NULL;
 	
-	if (inFile)
-	{
+	if(inFile){
 		fscanf(inFile,"%d\n",&dataSz);
 		*ppData = (int *)malloc(sizeof(int) * dataSz);
 		// Implement parse data block
-		if (*ppData != NULL)
-        {
-            for (int i = 0; i < dataSz; i++)
-            {
+		if(*ppData != NULL){
+            for(int i = 0; i < dataSz; i++){
                 fscanf(inFile, "%d", &((*ppData)[i]));
             }
         }
     }
-    else
-    {
+    else{
         printf("Error opening the input file: %s\n", inputFileName);
     }
     
